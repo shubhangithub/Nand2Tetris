@@ -20,6 +20,11 @@ CHIP FullAdder {
     //And(a=sum1, b=c, out=and2out);
     //Or(a=and1out, b=and2out, out=carry);
 
+    //Version 2:
+    HalfAdder(a=a,b=b,sum=absum,carry=abcarry);
+    HalfAdder(a=c,b=absum,sum=sum,carry=c2);
+    Or(a=abcarry,b=c2,out=carry);
+
 }
 
 
