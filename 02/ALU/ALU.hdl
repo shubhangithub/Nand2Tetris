@@ -49,8 +49,8 @@ CHIP ALU {
     Mux16(a=y,b=x4,sel=zy,out=yto0);
     Mux16(a=yto0,b=x5,sel=ny,out=ytonoty);
 
-    
-
+    Mux16(a=x6, b=x7, self=f, out=out1);
+    Mux16(a=out1, b=x8, sel=no, out=out);
 
 
 }
