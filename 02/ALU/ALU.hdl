@@ -58,33 +58,21 @@ CHIP ALU {
     //Not16(in=out2,out=notout2);
     //Mux16(a=out2,b=notout2,sel=no,out=out);
 
-    Mux16(a=x,  b=false,  sel=zx, out=xto0);   
+    Mux16(a=x,b=false,sel=zx,out=xto0);   
     Not16(in=xto0,out=notxto0);
-    Mux16(a=xto0, b=notxto0, sel=nx, out=x2);   
-    
-    Mux16(a=y,  b=false,  sel=zy, out=yto0);    
+    Mux16(a=xto0,b=notxto0,sel=nx,out=x2);   
+    Mux16(a=y,b=false,sel=zy,out=yto0);    
     Not16(in=yto0,out=notyto0);
-    Mux16(a=yto0, b=notyto0, sel=ny, out=y2);  
-    
-    Add16(a=x2, b=y2, out=add1);       
-    And16(a=x2, b=y2, out=and1);           
-    
-    Mux16(a=and1, b=add1, sel=f, out=out1); 
-    Not16(in=out1, out=notout1);
-    
-    Mux16(a=out1, b=notout1, sel=no, out=out2, out=out, out[15]=ng); 
-    
-
-    And16(a=out2, b=out2, out[0..7]=outlow, out[8..15]=outhigh); 
-
-    Or8Way(in=outlow, out=oroutlow);     
-    Or8Way(in=outhigh, out=orouthigh);    
-
-    Or(a=oroutlow, b=orouthigh, out=notzr); 
-
-    
-    Not(in=notzr, out=zr);         
+    Mux16(a=yto0,b=notyto0,sel=ny,out=y2);  
+    Add16(a=x2,b=y2,out=add1);       
+    And16(a=x2,b=y2,out=and1);           
+    Mux16(a=and1,b=add1,sel=f,out=out1); 
+    Not16(in=out1,out=notout1);
+    Mux16(a=out1,b=notout1,sel=no,out=out2,out=out,out[15]=ng); 
+    And16(a=out2,b=out2,out[0..7]=outlow,out[8..15]=outhigh); 
+    Or8Way(in=outlow,out=oroutlow);     
+    Or8Way(in=outhigh,out=orouthigh);    
+    Or(a=oroutlow,b=orouthigh,out=notzr); 
+    Not(in=notzr,out=zr);         
  
-
-
 }
